@@ -31,10 +31,8 @@
         }
     </style>
 </head>
-
     <body>
-        {% if author %}
-            <a href="{{url_for('hello_world')}}">Back</a>
+            <a href="{{url_for('authors')}}">Back</a> 
 
             <div id="author-info"> 
                 <h1 class="text-center">{{author}}</h1>
@@ -52,24 +50,6 @@
                 </li>
                 {% endfor %} 
             </ul>
-        {% else %}
-        <h1 class="text-center text-underline">Authors</h1> 
-        <!-- where the user will search for an author -->
-        <form action="{{ url_for('hello_world') }}" method="POST" class="search-form text-center">  
-            <div class="form-group">
-              <label for="author-search">Search Specific Author</label>
-              <input class="form-control" name="author-search">
-            </div> 
-            <button type="submit" class="btn btn-primary">Search</button> 
-        </form>
 
-        <ul class="list-group">
-            {% for author in authors %}
-            <li class="list-group-item text-center"> 
-                <a href="{{url_for('hello_world', author=author)}}">{{author}}</a>   
-            </li>
-            {% endfor %} 
-        </ul>
-        {% endif %} 
     </body>
-</html>
+</html> 
