@@ -1,54 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Flask App</title>
-    <!-- bootstrapp -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends './base.html' %}
+{% block body %} 
+    <h1 class="text-center text-underline">Authors</h1> 
+    <!-- where the user will search for an author -->
+    <form action="{{ url_for('authors') }}" method="POST" class="search-form text-center">  
+        <div class="form-group">
+            <label for="author-search">Search Specific Author</label>
+            <input class="form-control" name="author-search">
+        </div> 
+        <button type="submit" class="btn btn-primary">Search</button> 
+    </form>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <style>
-        .list-group{
-            margin: 0 auto;
-            width: 50%; 
-        }
-        .search-form{
-            margin: 0 auto; 
-            width: 50%; 
-        }
-        #author-info{
-            padding: 2em 4em 3em 2em; 
-        }
-        .search-form{
-            padding: 1.5em 0em 1.5em 0em; 
-        }
-    </style>
-</head>
-    <body>
-        <h1 class="text-center text-underline">Authors</h1> 
-        <!-- where the user will search for an author -->
-        <form action="{{ url_for('authors') }}" method="POST" class="search-form text-center">  
-            <div class="form-group">
-              <label for="author-search">Search Specific Author</label>
-              <input class="form-control" name="author-search">
-            </div> 
-            <button type="submit" class="btn btn-primary">Search</button> 
-        </form>
-
-        <ul class="list-group">
-            {% for author in authors %}
-            <li class="list-group-item text-center"> 
-                <a href="{{url_for('get_author', author=author)}}">{{author}}</a>   
-            </li>
-            {% endfor %} 
-        </ul>
-
-    </body>
-</html>
+    <ul class="list-group">
+        {% for author in authors %}
+        <li class="list-group-item text-center"> 
+            <a href="{{url_for('get_author', author=author)}}">{{author}}</a>   
+        </li>
+        {% endfor %} 
+    </ul>
+{% endblock %} 

@@ -1,55 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
-    <!-- bootstrapp -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends "base.html" %} 
+{% block body %}
+    <a href="{{url_for('authors')}}">Back</a> 
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <style>
-        .list-group{
-            margin: 0 auto;
-            width: 50%; 
-        }
-        .search-form{
-            margin: 0 auto; 
-            width: 50%; 
-        }
-        #author-info{
-            padding: 2em 4em 3em 2em; 
-        }
-        .search-form{
-            padding: 1.5em 0em 1.5em 0em; 
-        }
-    </style>
-</head>
-    <body>
-            <a href="{{url_for('authors')}}">Back</a> 
-
-            <div id="author-info"> 
-                <h1 class="text-center">{{author}}</h1>
-                {% if image_src %}
-                    <div class="text-center">
-                        <img src="{{image_src}}">
-                    </div>
-                {% endif %}
+    <div id="author-info"> 
+        <h1 class="text-center">{{author}}</h1>
+        {% if image_src %}
+            <div class="text-center">
+                <img src="{{image_src}}">
             </div>
+        {% endif %}
+    </div>
 
-            <ul class="list-group"> 
-                {% for quote in quotes[author] %} 
-                <li class="list-group-item"> 
-                    <p class="text-center">{{quote}}</p>
-                </li>
-                {% endfor %} 
-            </ul>
+    <ul class="list-group"> 
+        {% for quote in quotes[author] %} 
+        <li class="list-group-item"> 
+            <p class="text-center">{{quote}}</p>
+        </li>
+        {% endfor %} 
+    </ul>
+{% endblock %} 
 
-    </body>
-</html> 
